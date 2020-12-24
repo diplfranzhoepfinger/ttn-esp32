@@ -8,7 +8,7 @@ set(COMPONENT_ADD_INCLUDEDIRS
     "include"
 )
 set(COMPONENT_REQUIRES
-    nvs_flash     spi_master
+    nvs_flash     spi_chef
 )
 
 register_component()
