@@ -192,6 +192,17 @@ bool TheThingsNetwork::join(const char *devEui, const char *appEui, const char *
     return joinCore();
 }
 
+bool TheThingsNetwork::load_keys()
+{
+    if (!provisioning.haveKeys())
+    {
+        if (!provisioning.restoreKeys(false))
+            return false;
+    }
+
+    return true;
+}
+
 bool TheThingsNetwork::join()
 {
     if (!provisioning.haveKeys())

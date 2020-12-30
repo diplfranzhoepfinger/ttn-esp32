@@ -265,6 +265,19 @@ public:
      */
     bool join();
 
+    /**
+    * @brief only loads the Keys if they are needed after a DeepSleep. 
+	* no new Join is performed !
+    *
+    * The app EUI, app key and dev EUI must have already been provisioned by a call to provision().
+    * Before this function is called, `nvs_flash_init()` must have been called once.
+    *
+    * The function blocks until the activation has completed or failed.
+    *
+    * @return `true` 
+    */
+   bool load_keys();
+
    /**
      * @brief Sets the device EUI, app EUI and app key and activate the device via OTAA.
      * 
