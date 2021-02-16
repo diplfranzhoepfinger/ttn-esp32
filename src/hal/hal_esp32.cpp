@@ -368,7 +368,7 @@ int64_t esp_timer_get_linux_time(void)
 }
 
 // Gets current time in LMIC ticks
-u4_t hal_ticks()
+u4_t IRAM_ATTR hal_ticks()
 {
     // LMIC tick unit: 16µs
     // esp_timer unit: 1µs
