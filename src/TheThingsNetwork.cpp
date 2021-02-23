@@ -49,9 +49,9 @@ struct TTNLmicEvent {
     TTNLmicEvent(TTNEvent ev = eEvtNone): event(ev) { }
 
     TTNEvent event;
-    uint8_t port;
-    const uint8_t* message;
-    size_t messageSize;
+    uint8_t port = 0;
+    const uint8_t* message = nullptr;
+    size_t messageSize = 0;
 };
 
 static const char *TAG = "ttn";
