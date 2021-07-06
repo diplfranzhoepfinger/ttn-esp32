@@ -43,7 +43,18 @@ uint8_t HAL_ESP32::dioNum = 0;
 // Constructor
 
 HAL_ESP32::HAL_ESP32()
-    : rssiCal(10), nextAlarm(0)
+    : spiHost(SPI1_HOST),
+	  pinNSS(GPIO_NUM_NC),
+	  pinRxTx(GPIO_NUM_NC),
+	  pinRst(GPIO_NUM_NC),
+	  pinDIO0(GPIO_NUM_NC),
+	  pinDIO1(GPIO_NUM_NC),
+	  rssiCal(10),
+	  spiHandle(nullptr),
+	  spiTransaction(),
+	  mutex(nullptr),
+	  timer(nullptr),
+	  nextAlarm(0)
 {    
 }
 
@@ -281,7 +292,8 @@ void HAL_ESP32::timerInit()
         .callback = &timerCallback,
         .arg = nullptr,
         .dispatch_method = ESP_TIMER_TASK,
-        .name = "lmic_job"
+        .name = "lmic_job",
+		.skip_unhandled_events = true
     };
     esp_err_t err = esp_timer_create(&timerConfig, &timer);
     ESP_ERROR_CHECK(err);
